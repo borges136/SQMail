@@ -159,9 +159,9 @@ function getFilterFromParams(searchParams, folder) {
 	const filterBy = {
 		status: folder,
 		txt: searchParams.get('txt') || '',
-		isRead: searchParams.get('isRead') || null,
-		isStarred: searchParams.get('isStarred') || null,
-		labels: searchParams.get('labels') || []
+		// isRead: searchParams.get('isRead') || null,
+		// isStarred: searchParams.get('isStarred') || null,
+		// labels: searchParams.get('labels') || []
 	}
 	// console.log('filterBy from params', filterBy);
 	// for (const field in defaultFilter) {
