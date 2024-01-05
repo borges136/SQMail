@@ -1,0 +1,110 @@
+/* MOBILE ONLY */
+@media (max-width: 900px) {
+    html {
+        font-size: 18px;
+    }
+    .main-nav-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgb(255 255 255 / 90%);
+        border-inline-start: 1px solid #ccc;
+        width: 200px;
+        translate: 100% 0;
+
+        transition: translate 0.6s, box-shadow 0.6s;
+    }
+
+    body.menu-open .main-nav-container {
+        box-shadow: 0 0 20px rgb(0 0 0 / 50%);
+        translate: 0;
+    }
+
+    .main-header .main-nav {
+        flex-direction: column;
+    }
+    .main-nav > li {
+        border-bottom: 1px solid #ccc;
+        display: grid;
+    }
+
+    .main-header .main-nav a {
+        padding: 8px 26px;
+        transition: background-color 0.4s;
+    }
+
+    .main-header .main-nav a:hover {
+        text-decoration: none;
+        background-color: #ececec;
+        color: inherit;
+    }
+}
+
+/* SMALL */
+@media (min-width: 640px) {
+    .main-layout {
+        grid-template-columns:
+            minmax(20px, 1fr)
+            minmax(auto, var(--s))
+            minmax(20px, 1fr);
+    }
+}
+
+/* MEDIUM */
+@media (min-width: 900px) {
+    :root {
+        --layout-padding-ver: 80px;
+    }
+    .main-layout {
+        grid-template-columns:
+            minmax(20px, 1fr)
+            minmax(auto, var(--m))
+            minmax(20px, 1fr);
+    }
+    .card-layout {
+        grid-template-columns: 0 1fr 40px 1fr 0;
+    }
+
+    .card-layout > *:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .card-layout > *:first-child > *:not(.card-image) {
+        margin-right: var(--layout-padding-hor);
+        margin-left: var(--layout-padding-hor);
+    }
+
+    .card-layout > *:nth-child(even) {
+        grid-column: 2;
+    }
+
+    .card-layout > *:nth-child(odd):not(:first-child) {
+        grid-column: 4;
+    }
+
+    .main-header .main-nav {
+        margin-inline-start: 2rem;
+    }
+
+    .main-header .main-nav > li:not(:last-child) {
+        margin-inline-end: 100px;
+    }
+    .btn-toggle-menu {
+        display: none;
+    }
+}
+
+/* LARGE  */
+@media (min-width: 1100px) {
+    .main-layout {
+        grid-template-columns:
+            minmax(20px, 1fr)
+            minmax(auto, var(--l))
+            minmax(20px, 1fr);
+    }
+    .card-layout {
+        --layout-padding-ver: 120px;
+        grid-template-columns: var(--layout-padding-hor) 1fr 60px 1fr var(--layout-padding-hor);
+    }
+}

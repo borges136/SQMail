@@ -28,16 +28,16 @@ const loggedInUser = {
 _createMails()
 
 
-async function query(filterBy = {}, sortBy = getDefaultSort()) {
+async function query(criteria) {
 	// let mails = await storageService.query(MAIL_KEY)
-	return await httpService.get('mail')
+	return await httpService.get('mail' , criteria)
 	// mails = _filterMails(mails, filterBy)
 	// _sortMails(mails, sortBy)
 	// return mails
 }
 
 function get(mailId) {
-	return storageService.get(MAIL_KEY, mailId)
+	return httpService.get(`mail/${mailId}`)
 }
 
 async function getUnreadCount() {
@@ -46,15 +46,15 @@ async function getUnreadCount() {
 }
 
 function remove(mailId) {
-	return storageService.remove(MAIL_KEY, mailId)
+	return httpService.delete(`mail/${mailId}`)
 }
 
 function save(mail) {
 	if (mail.id) {
-		return storageService.put(MAIL_KEY, mail)
+		return httpService.put(`mail/${mail.id}`, mail)
 	} else {
 		mail.from = getLoggedUser().email
-		return storageService.post(MAIL_KEY, mail)
+		return httpService.post('mail', mail)
 	}
 }
 

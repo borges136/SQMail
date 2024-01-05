@@ -22,15 +22,15 @@ connection.connect(err => {
 function runSQL(sqlCommand,values) {
     return new Promise((resolve, reject) => {
         connection.query(sqlCommand, values,(error, results) => {
-            if (error) {
-                console.error('SQL query error:', error.message);
-                reject(error);
-            } else {
-                console.log('SQL query results:', results);
-                resolve(results);
-            }
-            // if (error) reject(error)
-            // else resolve(results)
+            // if (error) {
+            //     console.error('SQL query error:', error.message);
+            //     reject(error);
+            // } else {
+            //     console.log('SQL query results:', results);
+            //     resolve(results);
+            // }
+            if (error) reject(error)
+            else resolve(results)
         })
     })
 }

@@ -6,7 +6,7 @@ import Sidebar from './cmps/Sidebar.jsx'
 import MailList from './cmps/MailList.jsx'
 
 import { useEffect, useState } from 'react'
-import { mailService } from '@/services/mail.service'
+import { mailService } from '@/app/services/mail.service.js'
 import {
   useParams,
   usePathname,
@@ -15,7 +15,7 @@ import {
 } from 'next/navigation'
 
 export default function MailIndex() {
-  const [isLoading, setIsLoading] = useState(false)
+//   const [isLoading, setIsLoading] = useState(false)
   const params = useParams()
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -29,9 +29,9 @@ export default function MailIndex() {
   )
 
   useEffect(() => {
-    console.log('searchParams', searchParams)
-    console.log('params', params)
-    console.log('pathname', pathname)
+    // console.log('searchParams', searchParams)
+    // console.log('params', params)
+    // console.log('pathname', pathname)
     renderSearchParams()
     loadMails()
   }, [filterBy, sortBy, params.folder])
@@ -44,6 +44,7 @@ export default function MailIndex() {
         sortBy: sortBy.by,
         sortDir: sortBy.sortDir
       })
+	//   console.log('mails: ',mails);
       setMails(mails)
     } catch (err) {
       // showErrorMsg('Error fetching emails')
@@ -63,15 +64,7 @@ export default function MailIndex() {
     qsParams.set('txt', filterBy.txt)
     qsParams.set('sortBy', sortBy.by)
     router.push(pathname + '?' + qsParams.toString())
-    //   qsParams.toString()
-    // const filterForParams = {
-    // txt: filterBy.txt || '',
-    // sortBy: sortBy.by || '',
-    // compose: searchParams.get('compose') || ''
-    // }
-    // searchParams = {...searchParams,txt:'hi'}
-    // console.log("🚀 ~ file: page.jsx:53 ~ renderSearchParams ~ searchParams:", searchParams)
-    // setSearchParams(filterForParams)
+    
   }
 
   return (
@@ -81,11 +74,12 @@ export default function MailIndex() {
         filterBy={{ txt: filterBy.txt }}
       />
       <Sidebar folder={params.folder} />
-      {isLoading ? (
+	  <MailList mails={mails} folder={params.folder} />
+      {/* {isLoading ? (
         <span className="loader"></span>
       ) : (
-        <MailList mails={mails} folder={params.folder} />
-      )}
+        
+      )} */}
     </main>
   )
 }

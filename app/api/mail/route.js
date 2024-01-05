@@ -1,4 +1,4 @@
-import { mailService } from "./mail.service.js";
+import { mailService } from "../services/mail.service.js";
 import { NextResponse } from "next/server";
 
 export const GET = async (req) =>{

@@ -1,0 +1,42 @@
+/* .main-layout {
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+}
+
+.main-layout > *:not(.full) {
+    grid-column: 2;
+}
+
+.main-layout > *.full {
+    grid-column: 1 / -1;
+} */
+
+/* CARD */
+
+.card-layout {
+    /* display: grid;
+    row-gap: var(--layout-padding-ver);
+    margin-bottom: var(--layout-padding-ver); */
+}
+
+/* MAIL INDEX */
+
+.mail-index {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas: 
+    "header header"
+    "sidebar list";
+}
+
+.sidebar{
+    grid-area: sidebar;
+}
+.main-header{
+    grid-area: header;
+}
+
+.mail-list{
+    grid-area: list;
+}

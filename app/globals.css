@@ -2,69 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
+/* BASICS */
+@import url("styles/basics/base.css");
+@import url("styles/basics/helpers.css");
+@import url("styles/basics/layout.css");
+/* SETUP */
+@import url("styles/setup/typography.css");
+@import url("styles/setup/variables.css");
+/* PAGES */
+@import url("styles/pages/home.css");
+@import url("styles/pages/mail-index.css");
+/* CMPS */
+@import url("styles/cmps/loader.css");
+/* MQ */
+@import url("styles/basics/mq.css");
 
-body {
-    @apply min-h-full
-}
 
-.mail-index {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    grid-template-rows: max-content 1fr;
-    grid-template-areas: 
-    "header header"
-    "sidebar list";
-}
-
-.sidebar{
-    grid-area: sidebar;
-}
-.main-header{
-    grid-area: header;
-}
-
-.mail-list{
-    grid-area: list;
-}
-
-.loader {
-	width: 4.8px;
-	height: 4.8px;
-	display: block;
-	margin: 20px auto;
-	position: relative;
-	border-radius: 4px;
-	color: #000;
-	background: currentColor;
-	box-sizing: border-box;
-	animation: animloader 0.3s 0.3s linear infinite alternate;
-}
-.loader::after,
-.loader::before {
-	content: '';
-	box-sizing: border-box;
-	width: 4.8px;
-	height: 4.8px;
-	border-radius: 4px;
-	background: currentColor;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 15px;
-	animation: animloader 0.3s 0.45s linear infinite alternate;
-}
-.loader::after {
-	top: -15px;
-	animation-delay: 0s;
-}
-
-@keyframes animloader {
-	0% {
-		width: 4.8px;
-	}
-	100% {
-		width: 48px;
-	}
-}
