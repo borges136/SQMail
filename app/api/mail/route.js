@@ -2,10 +2,11 @@ import { mailService } from "./mail.service.js";
 import { NextResponse } from "next/server";
 
 export const GET = async (req) =>{
+    
     const queryParams = new URL(req.url, `http://${req.headers.host}`).searchParams;
     const criteria = {
         txt: queryParams.txt,
-        sortBy:queryParams.folder,
+        sortBy:queryParams.sortBy,
         sortDir:queryParams.sortDir,
         folder:queryParams.folder
     }

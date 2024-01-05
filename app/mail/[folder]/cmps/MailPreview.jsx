@@ -1,7 +1,12 @@
 export default function MailPreview() {
     return (
-      <main>
-        <h2>mail preview</h2>
-      </main>
+      <li>
+        <p>mail</p>
+        <p>mail</p>
+        <p>mail</p>
+        <p>mail</p>
+        <p>mail</p>
+        <p>mail</p>
+      </li>
     )
   }

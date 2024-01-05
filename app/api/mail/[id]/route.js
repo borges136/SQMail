@@ -1,9 +1,11 @@
 import { mailService } from "../mail.service";
 import { NextResponse } from "next/server";
 
-export const GET = async (req) =>{
+export const GET = async (req, {params}) =>{
     console.log('get mail by id');
-    const id = req.url.slice(req.url.lastIndexOf('/')+1)
+    // console.log('context:', context)
+    const {id} = params
+    // const id = req.url.slice(req.url.lastIndexOf('/')+1)
    
     const mail = await mailService.getById(id)
     return NextResponse.json(mail)

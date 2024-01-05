@@ -1,5 +1,6 @@
 import { utilService } from './util.service';
 import { storageService } from './async-storage.service';
+import { httpService } from './http.service';
 
 export const mailService = {
 	query,
@@ -28,10 +29,11 @@ _createMails()
 
 
 async function query(filterBy = {}, sortBy = getDefaultSort()) {
-	let mails = await storageService.query(MAIL_KEY)
-	mails = _filterMails(mails, filterBy)
-	_sortMails(mails, sortBy)
-	return mails
+	// let mails = await storageService.query(MAIL_KEY)
+	return await httpService.get('mail')
+	// mails = _filterMails(mails, filterBy)
+	// _sortMails(mails, sortBy)
+	// return mails
 }
 
 function get(mailId) {
@@ -132,7 +134,8 @@ function getEmptyMail(
 	to = '',
 	isRead = false,
 	isStarred = false,
-	removedAt = null
+	removedAt = null,
+	isDraft = false
 ) {
 	return { id: '', subject, body, sentAt, from, to, isRead, isStarred, removedAt }
 }
@@ -157,7 +160,8 @@ function getDefaultSort() {
 function getFilterFromParams(searchParams, folder) {
 	// console.log('folder', folder);
 	const filterBy = {
-		status: folder,
+		// status: folder,
+		// txt: searchParams.txt || '',
 		txt: searchParams.get('txt') || '',
 		// isRead: searchParams.get('isRead') || null,
 		// isStarred: searchParams.get('isStarred') || null,
@@ -172,8 +176,9 @@ function getFilterFromParams(searchParams, folder) {
 
 function getSortFromParams(searchParams) {
 	const sort = getDefaultSort()
+	sort.by = searchParams.sortBy || 'date'
 	//Allow Changing only wanted fields in the sort obj
-	sort.by = searchParams.get('sortBy') || 'date'
+	// sort.by = searchParams.get('sortBy') || 'date'
 	return sort
 }
 
