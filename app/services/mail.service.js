@@ -157,7 +157,7 @@ function getDefaultSort() {
 	}
 }
 
-function getFilterFromParams(searchParams, folder) {
+function getFilterFromParams(searchParams) {
 	// console.log('folder', folder);
 	const filterBy = {
 		// status: folder,

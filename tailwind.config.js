@@ -16,7 +16,7 @@ module.exports = {
         clrUnreadDark:'#2c2c2c',
         clrRead:'#f2f6fc',
         clrReadDark:'#161616',
-        clrSidebarActive:'#d5e3fe',
+        clrSidebarActive:'#d3e3fd',
         clrSidebarActiveDark:'#595959',
         clrSidebarHover:'#eaebef',
         clrSidebarHoverDark:'#414141',
@@ -26,6 +26,8 @@ module.exports = {
         clrTxtSecondaryDark:'#707070',
         clrTxtTertiary:'#444746',
         clrTxtTertiaryDark:'#c0c0c0',
+        clrHoverDark:'#e8eaed14',
+        clrHover:'#3c404314',
 
 
       }

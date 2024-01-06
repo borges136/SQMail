@@ -25,16 +25,20 @@ export default function MailIndex() {
   const pathname = usePathname()
   const [mails, setMails] = useState([])
   const [filterBy, setFilterBy] = useState(
-    mailService.getFilterFromParams(searchParams, params.folder)
+    mailService.getFilterFromParams(searchParams)
   )
   const [sortBy, setSortBy] = useState(
     mailService.getSortFromParams(searchParams)
   )
+  const [sidebarExpand,setSidebarExpand] = useState(false)
 
   useEffect(() => {
     renderSearchParams()
     loadMails()
   }, [filterBy, sortBy, params.folder])
+  useEffect(() => {
+   console.log('sidebarExpand',sidebarExpand)
+  }, [sidebarExpand])
 
   async function loadMails() {
     try {
@@ -68,10 +72,12 @@ export default function MailIndex() {
   return (
     <main className="mail-index-layout">
       <MailHeader
+      sidebarExpand={sidebarExpand}
+      setSidebarExpand={setSidebarExpand}
         onSetFilter={onSetFilterBy}
         filterBy={{ txt: filterBy.txt }}
       />
-      <Sidebar folder={params.folder} />
+      <Sidebar folder={params.folder} sidebarExpand={sidebarExpand} />
       <section className="mails-container">
         <MailSort />
         {mails ?
