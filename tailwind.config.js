@@ -23,7 +23,9 @@ module.exports = {
         clrComposeBtn:'#c6e7ff',
         clrStarred:'#efc74b',
         clrTxtSecondary:'#babec1',
+        clrTxtSecondaryDark:'#707070',
         clrTxtTertiary:'#444746',
+        clrTxtTertiaryDark:'#c0c0c0',
 
 
       }
