@@ -1,0 +1,14 @@
+.main-header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+}
+
+.header-search{
+    position: absolute;
+    left: 256px;
+    height: 48px;
+    /* border-radius: 1.5em; */
+    @apply rounded-3xl	bg-clrInput
+}

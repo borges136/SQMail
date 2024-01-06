@@ -19,3 +19,7 @@
     padding: 0;
     list-style-type: none; */
 }
+.flex-center{
+    @apply flex items-center justify-center
+    
+}

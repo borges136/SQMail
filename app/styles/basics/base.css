@@ -8,27 +8,19 @@
 }
 
 :root {
-	@apply text-primary
+	@apply text-clrTxtPrimary 
 }
 
 body {
-    @apply min-h-full
+    @apply bg-clrBgPrimary min-h-full m-0 text-lg md:text-base 
 }
 
 /* tags */
-html {
-    color: var(--clrPrimarybase);
-    /* font-family: playfair, serif; */
-    line-height: 1.71428571;
-}
 
-body {
-    margin: 0;
-    font-size: 0.875rem;
-}
 
 img {
-    width: 100%;
+    @apply w-full
+   
 }
 
 h1,
@@ -37,19 +29,19 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 400;
+    /* font-weight: 400;
     margin: 0 0 0.8em;
-    line-height: 1.4;
+    line-height: 1.4; */
 }
 
 h2 {
-    font-size: 2.1428571em;
+    /* font-size: 2.1428571em; */
 }
 
 a {
-    color: var(--clrPrimary-1);
+    /* color: var(--clrPrimary-1); */
 }
 
 a:hover {
-    text-decoration: none;
+    /* text-decoration: none; */
 }

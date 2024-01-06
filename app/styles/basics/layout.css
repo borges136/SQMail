@@ -21,13 +21,14 @@
 
 /* MAIL INDEX */
 
-.mail-index {
+.mail-index-layout {
     display: grid;
-    grid-template-columns: max-content 1fr;
-    grid-template-rows: max-content 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr max-content;
     grid-template-areas: 
-    "header header"
-    "sidebar list";
+    "header"
+    "list"
+    "sidebar";
 }
 
 .sidebar{
@@ -37,6 +38,6 @@
     grid-area: header;
 }
 
-.mail-list{
+.mails-container{
     grid-area: list;
 }

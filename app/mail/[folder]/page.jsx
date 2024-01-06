@@ -1,9 +1,10 @@
 'use client'
 // import Image from 'next/image'
 // import TxtFilter from "./cmps/TxtFilter.jx";
-import MailHeader from './cmps/MainHeader.jsx'
-import Sidebar from './cmps/Sidebar.jsx'
-import MailList from './cmps/MailList.jsx'
+import MailHeader from '@/app/cmps/MainHeader.jsx'
+import Sidebar from '@/app/cmps/Sidebar.jsx'
+// import MailList from '../../cmps/MailList.jsx'
+import MailList from '@/app/cmps/MailList.jsx'
 
 import { useEffect, useState } from 'react'
 import { mailService } from '@/app/services/mail.service.js'
@@ -13,9 +14,11 @@ import {
   useRouter,
   useSearchParams,
 } from 'next/navigation'
+import MailSort from '@/app/cmps/MailSort.jsx'
+import Loader from '@/app/cmps/Loader'
 
 export default function MailIndex() {
-//   const [isLoading, setIsLoading] = useState(false)
+  //   const [isLoading, setIsLoading] = useState(false)
   const params = useParams()
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -29,9 +32,6 @@ export default function MailIndex() {
   )
 
   useEffect(() => {
-    // console.log('searchParams', searchParams)
-    // console.log('params', params)
-    // console.log('pathname', pathname)
     renderSearchParams()
     loadMails()
   }, [filterBy, sortBy, params.folder])
@@ -39,12 +39,12 @@ export default function MailIndex() {
   async function loadMails() {
     try {
       const mails = await mailService.query({
-        txt:filterBy.txt,
+        txt: filterBy.txt,
         folder: params.folder,
         sortBy: sortBy.by,
-        sortDir: sortBy.sortDir
+        sortDir: sortBy.sortDir,
       })
-	//   console.log('mails: ',mails);
+      //   console.log('mails: ',mails);
       setMails(mails)
     } catch (err) {
       // showErrorMsg('Error fetching emails')
@@ -59,27 +59,25 @@ export default function MailIndex() {
   }
 
   function renderSearchParams() {
-    // Build your obj for search params - do it to in a cool service clean function ;)
     const qsParams = new URLSearchParams(searchParams)
     qsParams.set('txt', filterBy.txt)
     qsParams.set('sortBy', sortBy.by)
     router.push(pathname + '?' + qsParams.toString())
-    
   }
 
   return (
-    <main className="mail-index">
+    <main className="mail-index-layout">
       <MailHeader
         onSetFilter={onSetFilterBy}
         filterBy={{ txt: filterBy.txt }}
       />
       <Sidebar folder={params.folder} />
-	  <MailList mails={mails} folder={params.folder} />
-      {/* {isLoading ? (
-        <span className="loader"></span>
-      ) : (
-        
-      )} */}
+      <section className="mails-container">
+        <MailSort />
+        {mails ?
+        <MailList mails={mails} folder={params.folder} />
+      : <Loader/>}
+      </section>
     </main>
   )
 }

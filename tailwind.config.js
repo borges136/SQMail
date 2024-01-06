@@ -8,7 +8,24 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary: '#7856ff'
+        clrTxtPrimary: '#202124',
+        clrBgPrimary:'#f6f8fc',
+        clrBgPrimaryDark:'#111111',
+        clrInput:'#eaf1fb',
+        clrInputDark:'#474747',
+        clrUnreadDark:'#2c2c2c',
+        clrRead:'#f2f6fc',
+        clrReadDark:'#161616',
+        clrSidebarActive:'#d5e3fe',
+        clrSidebarActiveDark:'#595959',
+        clrSidebarHover:'#eaebef',
+        clrSidebarHoverDark:'#414141',
+        clrComposeBtn:'#c6e7ff',
+        clrStarred:'#efc74b',
+        clrTxtSecondary:'#babec1',
+        clrTxtTertiary:'#444746',
+
+
       }
       // backgroundImage: {
       //   'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -58,7 +58,18 @@ async function query(criteria={}) {
         default:
             break;
     }
-    const query = `SELECT * FROM mail  
+    const query = `SELECT 
+                mail.id AS id,
+                mail.subject AS subject,
+                mail.is_draft AS isDraft,
+                mail.body AS body,
+                mail.sent_at AS sentAt,
+                mail.from_user AS "from",
+                mail.to_user AS "to",
+                mail.is_read AS isRead,
+                mail.is_starred AS isStarred,
+                mail.removed_at AS removedAt
+                FROM mail  
                  WHERE 
                 mail.subject LIKE ? OR
                  mail.from_user LIKE ? OR

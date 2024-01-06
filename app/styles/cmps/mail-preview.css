@@ -1,0 +1,39 @@
+.mail-preview {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    height: 80px;
+    .preview-main-content {
+        display: flex;
+        overflow: hidden;
+    
+        flex-direction: column;
+       
+        white-space: nowrap;
+        .mail-seperator {
+            display: none;
+        }
+        .mail-address{
+            min-width: 200px;
+        }
+        .mail-body{
+            overflow: hidden;
+            text-overflow: ellipsis;
+        
+        }
+
+    }
+    .icons {
+        display: none;
+    }
+    .date {
+        display: inline-block;
+    }
+    &:hover {
+        .icons {
+            display: inline-block;
+        }
+        .date {
+            display: none;
+        }
+    }
+}

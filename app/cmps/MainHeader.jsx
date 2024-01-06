@@ -1,5 +1,6 @@
 import { utilService } from '@/app/services/util.service'
 import { useEffect, useRef, useState } from 'react'
+import { AiOutlineSearch } from "react-icons/ai";
 
 export default function MainHeader({ filterBy, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
@@ -17,9 +18,9 @@ export default function MainHeader({ filterBy, onSetFilter }) {
     <header className="main-header flex">
       <button>expand-menu</button>
       <div className="logo">SQMail</div>
-      <form className="header-search">
+      <form className="header-search flex items-center">
         <label title="search" htmlFor="txt" className="">
-          search
+        <AiOutlineSearch className='text-clrTxtTertiary' size={22}/>
         </label>
         <input
           value={filterByToEdit.txt}
