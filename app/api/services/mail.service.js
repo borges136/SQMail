@@ -69,7 +69,7 @@ async function query(criteria={}) {
                 mail.to_user AS "to",
                 mail.is_read AS isRead,
                 mail.is_starred AS isStarred,
-                mail.removed_at AS removedAt
+                mail.is_trash AS isTrash
                 FROM mail  
                  WHERE 
                 (mail.subject LIKE ? OR

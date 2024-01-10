@@ -28,23 +28,23 @@ export default function MailIndex() {
   const [filterBy, setFilterBy] = useState(
     mailService.getFilterFromParams(searchParams)
   )
-  const [sortBy, setSortBy] = useState(
-    mailService.getSortFromParams(searchParams)
-  )
-  const [sidebarExpand, setSidebarExpand] = useState(false)
+  // const [sortBy, setSortBy] = useState(
+  //   mailService.getSortFromParams(searchParams)
+  // )
+  const [sidebarExpand, setSidebarExpand] = useState(true)
 
   useEffect(() => {
     renderSearchParams()
     loadMails()
-  }, [filterBy, sortBy, params.folder])
+  }, [filterBy, params.folder])
 
   async function loadMails() {
     try {
       const mails = await mailService.query({
         txt: filterBy.txt,
         folder: params.folder,
-        sortBy: sortBy.by,
-        sortDir: sortBy.dir,
+        // sortBy: sortBy.by,
+        // sortDir: sortBy.dir,
       })
       //   console.log('mails: ',mails);
       setMails(mails)
@@ -63,7 +63,7 @@ export default function MailIndex() {
   function renderSearchParams() {
     const qsParams = new URLSearchParams(searchParams)
     qsParams.set('txt', filterBy.txt)
-    qsParams.set('sortBy', sortBy.by)
+    // qsParams.set('sortBy', sortBy.by)
     router.push(pathname + '?' + qsParams.toString())
   }
 
@@ -73,8 +73,8 @@ export default function MailIndex() {
       if (
         (params.folder === 'draft' && !updatedMail.isDraft) ||
         (params.folder === 'starred' && !updatedMail.isStarred) ||
-        (params.folder === 'trash' && !updatedMail.removedAt) ||
-        (params.folder !== 'trash' && updatedMail.removedAt)
+        (params.folder === 'trash' && !updatedMail.isTrash) ||
+        (params.folder !== 'trash' && updatedMail.isTrash)
       ) {
         setMails((prevMails) =>
           prevMails.filter((m) => m.id !== updatedMail.id)

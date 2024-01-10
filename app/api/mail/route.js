@@ -14,7 +14,6 @@ export const GET = async (req) => {
     // sortDir: +queryParams.get('sortDir'),
     folder: queryParams.get('folder'),
   }
-  console.log('🚀 ~ GET ~ criteria:', criteria)
 
   const mails = await mailService.query(criteria)
   return NextResponse.json(mails)
@@ -35,7 +34,7 @@ export const POST = async (req) => {
   
     
     // sentAt = utilService.getCurrDate()
-    sentAt = utilService.getRandomDateLastTwoMonths()
+    sentAt = utilService.getRandomDateWithinMonths(2)
     
   
   
@@ -50,10 +49,10 @@ export const POST = async (req) => {
     isTrash,
     isDraft,
   ]
-  // console.log('mail:', mail)
+ 
   var res = await mailService.add(values)
   console.log('res:', res)
-  // console.log('trying post');
+ 
   const mail = {
     id: res.insertId,
     subject,

@@ -8,32 +8,30 @@ export const mailService = {
 	remove,
 	save,
 	getEmptyMail,
-	getDefaultFilter,
+	// getDefaultFilter,
 	getLoggedUser,
 	getMailFromSearchParams,
 	getFilterFromParams,
 	toggleSelectedRead,
-	getSortFromParams,
+	// getSortFromParams,
 	getUnreadCount,
 	toggleSelectedArchive,
-	getFolders
+	// getFolders
 }
 
-const MAIL_KEY = 'mailDB'
+// const MAIL_KEY = 'mailDB'
 const loggedInUser = {
 	email: 'user@appsus.com',
 	fullName: 'Mahatma Appsus',
 }
 // Init demo data here
-_createMails()
+// _createMails()
 
 
 async function query(criteria) {
-	// let mails = await storageService.query(MAIL_KEY)
+	
 	return await httpService.get('mail' , criteria)
-	// mails = _filterMails(mails, filterBy)
-	// _sortMails(mails, sortBy)
-	// return mails
+
 }
 
 function get(mailId) {
@@ -90,72 +88,39 @@ async function toggleSelectedRead(selectedMailsIds, isRead) {
 	}
 }
 
-function getFolders() {
-	// 			<li className={folder === 'starred' ? 'active' : ''} onClick={() => onGoToFolder('starred')}>
-	//<span className="material-symbols-outlined">star</span>
-	//{isExpanded && <span>Starred</span>}
-	//</li>
-	return [
-		{
-			path: 'inbox',
-			icon: 'inbox',
-			name: 'Inbox'
-		},
-		{
-			path: 'starred',
-			icon: 'star',
-			name: 'Starred'
-		},
-		{
-			path: 'sent',
-			icon: 'send',
-			name: 'Sent'
-		},
-		{
-			path: 'draft',
-			icon: 'draft',
-			name: 'Drafts'
-		},
-		{
-			path: 'trash',
-			icon: 'Delete',
-			name: 'Deleted'
-		},
 
-	]
-}
 
 function getEmptyMail(
 	subject = '',
 	body = '',
-	sentAt = '',
+	sentAt = null,
 
 	from = '',
 	to = '',
-	isRead = false,
-	isStarred = false,
-	removedAt = null,
-	isDraft = false
+	isRead = 0,
+	isStarred = 0,
+	isTrash = 0,
+	isDraft = 1
 ) {
-	return { id: '', subject, body, sentAt, from, to, isRead, isStarred, removedAt,isDraft }
+	return { id: '', subject, body, sentAt, from, to, isRead, isStarred, isTrash,isDraft }
 }
 
-function getDefaultFilter() {
-	return {
-		status: 'inbox',
-		txt: '',
-		isRead: null,
-		isStarred: null,
-		labels: []
-	}
-}
+// function getDefaultFilter() {
+// 	return {
+// 		status: 'inbox',
+// 		txt: '',
+// 		isRead: null,
+// 		isStarred: null,
+// 		labels: []
+// 	}
+// }
 
-function getDefaultSort() {
-	return {
-		by: 'date',
-		dir: 1
-	}
-}
+// function getDefaultSort() {
+// 	return {
+// 		by: 'date',
+// 		dir: 1
+// 	}
+// }
 
 function getFilterFromParams(searchParams) {
 	// console.log('folder', folder);
@@ -174,13 +139,13 @@ function getFilterFromParams(searchParams) {
 	return filterBy
 }
 
-function getSortFromParams(searchParams) {
-	const sort = getDefaultSort()
-	// sort.by = searchParams.sortBy || 'date'
-	//Allow Changing only wanted fields in the sort obj
-	sort.by = searchParams.get('sortBy') || 'date'
-	return sort
-}
+// function getSortFromParams(searchParams) {
+// 	const sort = getDefaultSort()
+// 	// sort.by = searchParams.sortBy || 'date'
+// 	//Allow Changing only wanted fields in the sort obj
+// 	sort.by = searchParams.get('sortBy') || 'date'
+// 	return sort
+// }
 
 function getMailFromSearchParams(searchParams = { get: () => { } }) {
 	const mail = getEmptyMail()
@@ -195,54 +160,11 @@ function getLoggedUser() {
 	return loggedInUser
 }
 
-function _filterMails(mails, filterBy) {
-	if (filterBy.status) {
-		mails = _filterMailsByFolder(mails, filterBy.status)
-	}
-	if (filterBy.txt) {
-		const regExp = new RegExp(filterBy.txt, 'i')
-		mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body) || regExp.test(mail.from))
-	}
-	if (filterBy.isRead !== null && filterBy.isRead !== undefined) {
-		mails = mails.filter(mail => mail.isRead === filterBy.isRead)
-	}
-	return mails
 
-}
 
-function _filterMailsByFolder(mails, folder) {
-	switch (folder) {
-		case 'inbox':
-			mails = mails.filter(mail => (mail.to === loggedInUser.email) && !mail.removedAt && !mail.isDraft)
-			break
-		case 'sent':
-			mails = mails.filter(mail => (mail.from === loggedInUser.email) && !mail.removedAt && !mail.isDraft)
-			break
-		case 'starred':
-			mails = mails.filter(mail => mail.isStarred && !mail.removedAt && !mail.isDraft)
-			break
-		case 'trash':
-			mails = mails.filter(mail => mail.removedAt)
-			break
-		case 'draft':
-			mails = mails.filter(mail => !mail.sentAt && !mail.removedAt)
-			console.log('I thought I removed the drafts option. how did you get here? ')
-			break
-	}
-	return mails
-}
 
-function _sortMails(mails, sortBy) {
-	if (sortBy.by === 'date') {
-		mails.sort((mail1, mail2) => (mail2.sentAt - mail1.sentAt) * sortBy.dir)
-	} else if (sortBy.by === 'starred') {
-		mails.sort((mail1, mail2) => (mail2.isStarred - mail1.isStarred) * sortBy.dir)
-	} else if (sortBy.by === 'read') {
-		mails.sort((mail1, mail2) => (mail1.isRead - mail2.isRead) * sortBy.dir)
-	} else if (sortBy.by === 'subject') {
-		mails.sort((mail1, mail2) => mail1.subject.localeCompare(mail2.subject) * sortBy.dir)
-	}
-}
+
+
 
 function _createMail(subject, body, sentAt, from, to, isRead, isStarred, removedAt = null) {
 	const mail = getEmptyMail(subject, body, sentAt, from, to, isRead, isStarred, removedAt)
