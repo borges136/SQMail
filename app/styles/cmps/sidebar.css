@@ -8,6 +8,7 @@
     .folder-list{
         display: flex;
         justify-content: center;
+        
     }
     .txt-span{
         display: none;

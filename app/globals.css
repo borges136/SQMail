@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 /* BASICS */
 @import url("styles/basics/base.css");
@@ -20,5 +18,10 @@
 @import url("styles/cmps/mail-preview.css");
 /* MQ */
 @import url("styles/basics/mq.css");
+
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 

@@ -137,7 +137,7 @@ function getEmptyMail(
 	removedAt = null,
 	isDraft = false
 ) {
-	return { id: '', subject, body, sentAt, from, to, isRead, isStarred, removedAt }
+	return { id: '', subject, body, sentAt, from, to, isRead, isStarred, removedAt,isDraft }
 }
 
 function getDefaultFilter() {
@@ -176,9 +176,9 @@ function getFilterFromParams(searchParams) {
 
 function getSortFromParams(searchParams) {
 	const sort = getDefaultSort()
-	sort.by = searchParams.sortBy || 'date'
+	// sort.by = searchParams.sortBy || 'date'
 	//Allow Changing only wanted fields in the sort obj
-	// sort.by = searchParams.get('sortBy') || 'date'
+	sort.by = searchParams.get('sortBy') || 'date'
 	return sort
 }
 

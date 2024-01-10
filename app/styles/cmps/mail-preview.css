@@ -9,7 +9,12 @@
         flex-direction: column;
        
         white-space: nowrap;
+        .mail-address{
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         .mail-seperator {
+
             display: none;
         }
         .mail-address{

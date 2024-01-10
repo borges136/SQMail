@@ -1,12 +1,23 @@
 import MailPreview from './MailPreview'
 
-export default function MailList({ mails,folder }) {
+export default function MailList({
+  mails,
+  folder,
+  onUpdateMail,
+  onRemoveMail,
+}) {
   return (
     <>
       {mails.length ? (
         <ul className="mail-list">
           {mails.map((mail) => (
-            <MailPreview key={mail.id} mail={mail} folder={folder} />
+            <MailPreview
+              key={mail.id}
+              mail={mail}
+              folder={folder}
+              onUpdateMail={onUpdateMail}
+              onRemoveMail={onRemoveMail}
+            />
           ))}
         </ul>
       ) : (

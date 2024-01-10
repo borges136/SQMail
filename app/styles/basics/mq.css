@@ -21,6 +21,7 @@
            
             .mail-seperator {
                 display: inline-block;
+                margin-inline: 1em;
             }
         }
         

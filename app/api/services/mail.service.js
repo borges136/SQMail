@@ -1,63 +1,64 @@
 import DBService from './db.service.js'
 
 const loggedInUser = {
-	email: 'dore@sqmail.com',
+	email: 'dore.zahavy@sqmail.com',
 	fullName: 'Dore Babaji',
 }
 
 async function query(criteria={}) {
+    // console.log("🚀 ~ query ~ criteria:", criteria)
     const txt = criteria.txt || '';
     const folder = criteria.folder || '';
-    const sortBy = criteria.sortBy || '';
+    // const sortBy = criteria.sortBy || '';
     // const sortDir = criteria.sortDir === -1 ? 'DESC' : 'ASC';
 
-    let sortDir  // asking explicitly to control incoming query
-    if (criteria.sortDir === -1) sortDir = 'DESC'
-    if (criteria.sortDir === 1) sortDir = 'ASC'
+    // let sortDir  // asking explicitly to control incoming query
+    // if (criteria.sortDir === -1) sortDir = 'DESC'
+    // if (criteria.sortDir === 1) sortDir = 'ASC'
 
     const values = [`%${txt}%`,`%${txt}%`,`%${txt}%`,`%${txt}%`];
 
     let filterClause = '';
-    let sortByClause = '';
+    // let sortByClause = '';
 
     switch (folder) {
         case 'inbox':
-            filterClause = `AND is_draft = false AND removed_at IS NULL AND to_user = '${loggedInUser.email}'`;
+            filterClause = `AND is_draft = 0 AND is_trash = 0 AND to_user = '${loggedInUser.email}'`;
             break;
         case 'sent':
-            filterClause = `AND is_draft = false AND removed_at IS NULL AND from_user = '${loggedInUser.email}'`;
+            filterClause = `AND is_draft = 0 AND is_trash = 0 AND from_user = '${loggedInUser.email}'`;
             break;
         case 'trash':
-            filterClause = 'AND removed_at IS NOT NULL';
+            filterClause = 'AND is_trash = 1';
             break;
         case 'draft':
-            filterClause = 'AND is_draft = true';
+            filterClause = 'AND is_draft = 1';
             break;
         case 'starred':
-            filterClause = `AND is_draft = false AND removed_at IS NULL AND is_starred = true`;
+            filterClause = `AND is_draft = 0 AND is_trash = 0 AND is_starred = 1`;
             break;
         // Add more cases if needed for other status values
         default:
             break;
     }
 
-    switch (sortBy) {
-        case 'date':
-            sortByClause = `ORDER BY sent_at ${sortDir}`;
-            break;
-        case 'starred':
-            sortByClause = `ORDER BY is_starred ${sortDir}`;
-            break;
-        case 'read':
-            sortByClause = `ORDER BY is_read ${sortDir}`;
-            break;
-        case 'subject':
-            sortByClause = `ORDER BY subject ${sortDir}`;
-            break;
-        // Add more cases if needed for other sortBy values
-        default:
-            break;
-    }
+    // switch (sortBy) {
+    //     case 'date':
+    //         sortByClause = `ORDER BY sent_at ${sortDir}`;
+    //         break;
+    //     case 'starred':
+    //         sortByClause = `ORDER BY is_starred ${sortDir}`;
+    //         break;
+    //     case 'read':
+    //         sortByClause = `ORDER BY is_read ${sortDir}`;
+    //         break;
+    //     case 'subject':
+    //         sortByClause = `ORDER BY subject ${sortDir}`;
+    //         break;
+    //     // Add more cases if needed for other sortBy values
+    //     default:
+    //         break;
+    // }
     const query = `SELECT 
                 mail.id AS id,
                 mail.subject AS subject,
@@ -71,12 +72,13 @@ async function query(criteria={}) {
                 mail.removed_at AS removedAt
                 FROM mail  
                  WHERE 
-                mail.subject LIKE ? OR
+                (mail.subject LIKE ? OR
                  mail.from_user LIKE ? OR
                  mail.to_user LIKE ? OR
-                 mail.body LIKE ?
-                 ${filterClause}
-                 ${sortByClause}`
+                 mail.body LIKE ?)
+                 ${filterClause}`
+                //  ${sortByClause}
+                console.log("🚀 ~ query ~ query:", query)
     return DBService.runSQL(query,values)
 }
 
@@ -91,7 +93,7 @@ async function getById(mailId) {
 
 
 async function add(values) {
-    const sqlCmd = `INSERT INTO mail (subject, body, sent_at, from_user, to_user, is_read, is_starred, removed_at, is_draft) 
+    const sqlCmd = `INSERT INTO mail (subject, body, sent_at, from_user, to_user, is_read, is_starred, is_trash, is_draft) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
                 // VALUES ("${mail.subject}",
                 //         "${mail.body}",
@@ -116,7 +118,7 @@ async function update(values) {
                                 to_user = ?,
                                 is_read = ?,
                                 is_starred = ?,
-                                removed_at = ?,
+                                is_trash = ?,
                                 is_draft = ?
                     WHERE mail.id = ?`
 
