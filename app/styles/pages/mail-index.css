@@ -1,3 +1,8 @@
-.mail-index{
-    
+.mails-container{
+    border-radius: 1em;
+    background: #fff;
+    margin-inline-end: 1em;
+    margin-block-end: 1em;
+    /* padding-inline-start: 13px; */
+    height: calc(100vh - 64px - 1em);
 }

@@ -18,8 +18,8 @@ module.exports = {
         clrReadDark:'#161616',
         clrSidebarActive:'#d3e3fd',
         clrSidebarActiveDark:'#595959',
-        clrSidebarHover:'#eaebef',
-        clrSidebarHoverDark:'#414141',
+        // clrSidebarHover:'#eaebef',
+        // clrSidebarHoverDark:'#414141',
         clrComposeBtn:'#c6e7ff',
         clrStarred:'#efc74b',
         clrTxtSecondary:'#babec1',
@@ -28,6 +28,7 @@ module.exports = {
         clrTxtTertiaryDark:'#c0c0c0',
         clrHoverDark:'#e8eaed14',
         clrHover:'#3c404314',
+        // clrPreviewBorder:'#808080'
 
 
       }

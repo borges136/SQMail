@@ -9,55 +9,65 @@ import { HiOutlineInbox } from 'react-icons/hi'
 export default function FolderList() {
   const pathname = usePathname()
   return (
-    <ul className='folder-list'>
+    <ul className="folder-list">
       <li
-        className={`  hover:bg-clrHover ${
-          pathname === '/mail/inbox' ? 'bg-clrSidebarActive' : ''
-        }`}
+     
       >
-        <Link className="flex items-center h-8" href="/mail/inbox">
-          <HiOutlineInbox />
-          <span className='txt-span'>Inbox</span>
+        <Link className={
+          pathname === '/mail/inbox'
+            ? 'bg-clrSidebarActive'
+            : 'hover:bg-clrHover'
+        } href="/mail/inbox">
+          <HiOutlineInbox size={20} />
+          <span className="txt-span">Inbox</span>
         </Link>
       </li>
       <li
-        className={`flex items-center hover:bg-clrHover ${
-          pathname === '/mail/starred' ? 'bg-clrSidebarActive' : ''
-        }`}
+        
       >
-        <Link className="flex items-center  h-8" href="/mail/starred">
+        <Link className={
+          pathname === '/mail/starred'
+            ? 'bg-clrSidebarActive'
+            : 'hover:bg-clrHover'
+        } href="/mail/starred">
           <MdOutlineStar size={20} />
-          <span className='txt-span'>Starred</span>
+          <span className="txt-span">Starred</span>
         </Link>
       </li>
       <li
-        className={`flex items-center hover:bg-clrHover ${
-          pathname === '/mail/sent' ? 'bg-clrSidebarActive' : ''
-        }`}
+        
       >
-        <Link className="flex items-center h-8" href="/mail/sent">
-          <RxPaperPlane />
-          <span className='txt-span'>Sent</span>
+        <Link className={
+          pathname === '/mail/sent'
+            ? 'bg-clrSidebarActive'
+            : 'hover:bg-clrHover'
+        } href="/mail/sent">
+          <RxPaperPlane size={20} />
+          <span className="txt-span">Sent</span>
         </Link>
       </li>
       <li
-        className={`flex items-center hover:bg-clrHover ${
-          pathname === '/mail/draft' ? 'bg-clrSidebarActive' : ''
-        }`}
+      
       >
-        <Link className="flex items-center h-8" href="/mail/draft">
-          <CiFileOn />
-          <span className='txt-span'>Draft</span>
+        <Link className={
+          pathname === '/mail/draft'
+            ? 'bg-clrSidebarActive'
+            : 'hover:bg-clrHover'
+        } href="/mail/draft">
+          <CiFileOn size={20} />
+          <span className="txt-span">Draft</span>
         </Link>
       </li>
       <li
-        className={`flex items-center hover:bg-clrHover ${
-          pathname === '/mail/trash' ? 'bg-clrSidebarActive' : ''
-        }`}
+      
       >
-        <Link className="flex items-center h-8" href="/mail/trash">
-          <FaRegTrashAlt />
-          <span className='txt-span'>Trash</span>
+        <Link className={
+          pathname === '/mail/trash'
+            ? 'bg-clrSidebarActive'
+            : 'hover:bg-clrHover'
+        } href="/mail/trash">
+          <FaRegTrashAlt size={20} />
+          <span className="txt-span">Trash</span>
         </Link>
       </li>
     </ul>

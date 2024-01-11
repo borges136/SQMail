@@ -5,7 +5,7 @@ export default function Sidebar({ sidebarExpand }) {
   return (
     <aside className={`sidebar ${sidebarExpand ? 'expand' : ''}`}>
       <button className="compose-btn flex items-center">
-        <HiOutlinePencil />
+        <HiOutlinePencil size={20}/>
         <span className='txt-span'>Compose</span>
       </button>
       <FolderList />

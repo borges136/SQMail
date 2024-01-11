@@ -14,21 +14,20 @@ export default function MailPreview({
   const { from, subject, body, sentAt, to, isTrash, isRead, isStarred } = mail
 
   function formatDate(inputDate) {
-    if (!inputDate) return '';
+    if (!inputDate) return ''
 
-    const date = new Date(inputDate);
+    const date = new Date(inputDate)
 
-  
     if (isToday(date)) {
-        return format(date, 'hh:mm a');
+      return format(date, 'hh:mm a')
     }
 
     if (isThisMonth(date)) {
-        return format(date, 'MMM d');
+      return format(date, 'MMM d')
     }
 
-    return format(date, 'MM/dd/yy');
-}
+    return format(date, 'MM/dd/yy')
+  }
   useEffect(() => {
     if (isExpanded && !isRead) {
       onToggleIsRead()
@@ -41,11 +40,11 @@ export default function MailPreview({
   }
 
   function onToggleIsStarred(ev) {
-    console.log('sentAt',mail.sentAt);
-    ev.stopPropagation() 
+    console.log('sentAt', mail.sentAt)
+    ev.stopPropagation()
     const updatedMail = {
       ...mail,
-      isStarred: mail.isStarred? 0 : 1
+      isStarred: mail.isStarred ? 0 : 1,
     }
     onUpdateMail(updatedMail)
   }
@@ -54,7 +53,7 @@ export default function MailPreview({
     ev.stopPropagation()
     const updatedMail = {
       ...mail,
-      isRead: mail.isRead? 0 : 1
+      isRead: mail.isRead ? 0 : 1,
     }
     onUpdateMail(updatedMail)
   }
@@ -64,15 +63,17 @@ export default function MailPreview({
 
     const updatedMail = {
       ...mail,
-      isTrash: mail.isTrash? 0 : 1
+      isTrash: mail.isTrash ? 0 : 1,
     }
     onUpdateMail(updatedMail)
   }
 
   const starTitle = isStarred ? 'Starred' : 'Not starred'
+  const readTitle = isRead? 'Mark as unread' : 'Mark as read'
+  const readClass = isRead ? 'bg-clrRead dark:bg-clrReadDark' : 'dark:bg-clrUneadDark unread'
   return (
-    <li className="mail-preview">
-      <span onClick={onToggleIsStarred} title={starTitle}>
+    <li className={`mail-preview ${readClass}`}>
+      <span onClick={onToggleIsStarred} title={starTitle} className='star-span'>
         {mail.isStarred ? (
           <MdOutlineStar size={20} className="text-clrStarred" />
         ) : (
@@ -84,19 +85,19 @@ export default function MailPreview({
       </span>
       <div className="preview-main-content">
         <span className="mail-address">
-        {folder === 'draft' && 'Draft'}
-      {folder === 'sent' && `To: ${mail.to}`}
-      {folder !== 'draft' && folder !== 'sent' && mail.from}
+          {folder === 'draft' && 'Draft'}
+          {folder === 'sent' && `To: ${mail.to}`}
+          {folder !== 'draft' && folder !== 'sent' && mail.from}
         </span>
         <span className="mail-subject">{mail.subject}</span>
         <span className="mail-seperator">-</span>
         <span className="mail-body">{mail.body}</span>
       </div>
 
-      {/* <span className="date">{formatDate(mail.sentAt)}</span> */}
+      
       <span className="date">{formatDate(mail.sentAt)}</span>
       <div className="icons">
-        <span onClick={onToggleIsRead}>
+        <span onClick={onToggleIsRead} title={readTitle}>
           {isRead ? <IoMailUnreadOutline /> : <LuMailOpen />}
         </span>
         <span onClick={onToggleIsTrash}>

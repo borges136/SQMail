@@ -3,6 +3,7 @@
     align-items: center;
     width: 100%;
     height: 64px;
+    padding: .5em;
     .expand-hamburger{
         width: 48px;
         height: 48px;
@@ -13,6 +14,18 @@
     position: absolute;
     left: 256px;
     height: 48px;
+    font-size: 1rem;
     /* border-radius: 1.5em; */
-    @apply rounded-3xl	bg-clrInput
+    label {
+        padding: 12px;
+    }
+    @apply rounded-3xl	bg-clrInput focus-within:bg-white;
+    & input{
+        
+        @apply bg-clrInput focus:bg-white outline-none;
+    }
+    /* :focus{
+        background-color: #fff;
+    } */
+   
 }

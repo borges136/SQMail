@@ -42,7 +42,7 @@ export default function MainHeader({ filterBy, onSetFilter ,sidebarExpand,setSid
           type="text"
           name="txt"
           id="txt"
-          placeholder={`Search`}
+          placeholder={`Search mail`}
         />
       </form>
     </header>
