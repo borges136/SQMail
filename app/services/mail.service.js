@@ -94,7 +94,6 @@ function getEmptyMail(
 	subject = '',
 	body = '',
 	sentAt = null,
-
 	from = '',
 	to = '',
 	isRead = 0,
@@ -102,7 +101,7 @@ function getEmptyMail(
 	isTrash = 0,
 	isDraft = 1
 ) {
-	return { id: '', subject, body, sentAt, from, to, isRead, isStarred, isTrash,isDraft }
+	return {  subject, body, sentAt, from, to, isRead, isStarred, isTrash,isDraft }
 }
 
 // function getDefaultFilter() {

@@ -17,6 +17,7 @@ import {
 import Loader from '@/app/cmps/Loader'
 import { showErrorMsg, showSuccessMsg } from '@/app/services/event-bus.service'
 import MultSelectBar from '@/app/cmps/MultSelectBar'
+import MailCompose from '@/app/cmps/MailCompose'
 
 export default function MailIndex() {
   //   const [isLoading, setIsLoading] = useState(false)
@@ -25,6 +26,7 @@ export default function MailIndex() {
   const router = useRouter()
   const pathname = usePathname()
   const [mails, setMails] = useState(null)
+  const [compose, setCompose] = useState(null)
   const [filterBy, setFilterBy] = useState(
     mailService.getFilterFromParams(searchParams)
   )
@@ -60,10 +62,14 @@ export default function MailIndex() {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
   }
 
-  function renderSearchParams() {
-    const qsParams = new URLSearchParams(searchParams)
+  function renderSearchParams(compose = searchParams.get('compose')) {
+    console.log('🚀 ~ renderSearchParams ~ compose:', compose)
+    console.log('🚀 ~ renderSearchParams ~ pathname:', pathname)
+
+    const qsParams = new URLSearchParams()
+    // const qsParams = new URLSearchParams(searchParams)
     qsParams.set('txt', filterBy.txt)
-    // qsParams.set('sortBy', sortBy.by)
+    if (compose) qsParams.set('compose', compose)
     router.push(pathname + '?' + qsParams.toString())
   }
 
@@ -135,7 +141,11 @@ export default function MailIndex() {
         onSetFilter={onSetFilterBy}
         filterBy={{ txt: filterBy.txt }}
       />
-      <Sidebar folder={params.folder} sidebarExpand={sidebarExpand} />
+      <Sidebar
+        folder={params.folder}
+        sidebarExpand={sidebarExpand}
+        renderSearchParams={renderSearchParams}
+      />
       <section className="mails-container">
         <MultSelectBar />
 
@@ -150,6 +160,14 @@ export default function MailIndex() {
           <Loader />
         )}
       </section>
+      {searchParams.get('compose') && (
+        <MailCompose
+          onAddMail={onAddMail}
+          onUpdateMail={onUpdateMail}
+          searchParams={searchParams}
+          renderSearchParams={renderSearchParams}
+        />
+      )}
     </main>
   )
 }

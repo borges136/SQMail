@@ -89,7 +89,7 @@ export default function MailPreview({
           {folder === 'sent' && `To: ${mail.to}`}
           {folder !== 'draft' && folder !== 'sent' && mail.from}
         </span>
-        <span className="mail-subject">{mail.subject}</span>
+        <span className="mail-subject">{mail.subject || '(no subject)'}</span>
         <span className="mail-seperator">-</span>
         <span className="mail-body">{mail.body}</span>
       </div>
