@@ -22,7 +22,6 @@ export const PUT = async (req) => {
     isDraft,
     id,
   } = await req.json()
-  console.log('🚀 ~ PUT ~ sentAt:', sentAt)
   if (isDraft) sentAt = utilService.getCurrDate()
   else sentAt = format(parseISO(sentAt), 'yyyy-MM-dd HH:mm:ss')
   const values = [

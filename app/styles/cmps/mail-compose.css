@@ -6,21 +6,35 @@
     width: 100vw;
     bottom: 0;
     right: 0;
+    /* border-radius: 2em; */
+    /* border-radius: 8px 8px 0 0; */
+    
     .compose-header {
+        & h4{
+            color: #041e49;
+        }
+        padding-inline-start: 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         .icons-container {
             display: flex;
             align-items: center;
+            margin-inline-end: 12px;
+            & span {
+                margin-inline-start: 4px;
+            }
         }
     }
     .compose-controls {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding-inline-start: 16px;
+       
     }
     .compose-form {
+        padding-inline-start: 16px;
         display: grid;
         grid-template-rows: 40px 40px 1fr;
     }
@@ -29,7 +43,7 @@
             0px 8px 10px 1px rgba(0, 0, 0, 0.14),
             0px 3px 14px 2px rgba(0, 0, 0, 0.12),
             0px 5px 5px -3px rgba(0, 0, 0, 0.2);
-        border-radius: 8px 8px 0 0;
+        border-radius: .5rem .5rem 0 0;
         width: 451px;
         right: 61px;
         &.minimized {

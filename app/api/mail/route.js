@@ -32,9 +32,9 @@ export const POST = async (req) => {
   } = await req.json()
 
   
-    
-    // sentAt = utilService.getCurrDate()
-    sentAt = utilService.getRandomDateWithinMonths(2)
+    from = mailService.getLoggedinUser().email
+    sentAt = utilService.getCurrDate()
+    // sentAt = utilService.getRandomDateWithinMonths(2)
     
   
   

@@ -145,11 +145,14 @@ function remove(mailId) {
 //     update,
 //     remove
 // }
-
+function getLoggedinUser(){
+    return loggedInUser
+}
 export const mailService = {
     query,
     getById,
     add,
     update,
-    remove
+    remove,
+    getLoggedinUser
 }

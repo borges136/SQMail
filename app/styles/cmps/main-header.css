@@ -1,31 +1,28 @@
-.main-header{
+.main-header {
     display: flex;
     align-items: center;
     width: 100%;
     height: 64px;
-    padding: .5em;
-    .expand-hamburger{
+    padding: 0.5em;
+    .expand-hamburger {
         width: 48px;
         height: 48px;
     }
+    .dark-btn {
+        position: absolute;
+        right: 2em;
+    }
 }
 
-.header-search{
+.header-search {
     position: absolute;
     left: 256px;
     height: 48px;
+    min-width: 324px;
+    width: 40%;
     font-size: 1rem;
     /* border-radius: 1.5em; */
-    label {
-        padding: 12px;
-    }
-    @apply rounded-3xl	bg-clrInput focus-within:bg-white;
-    & input{
-        
-        @apply bg-clrInput focus:bg-white outline-none;
-    }
-    /* :focus{
-        background-color: #fff;
+    /* & .logo{
+        height: 40px;
     } */
-   
 }

@@ -17,6 +17,7 @@
 @import url("styles/cmps/mail-list.css");
 @import url("styles/cmps/mail-preview.css");
 @import url("styles/cmps/mail-compose.css");
+@import url("styles/cmps/mult-bar.css");
 /* MQ */
 @import url("styles/basics/mq.css");
 

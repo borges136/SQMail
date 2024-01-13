@@ -1,13 +1,22 @@
 .sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 72px;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     transition: width 0.3s;
-    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+    /* transition-timing-function: cubic-bezier(0.4,0,0.2,1); */
+    .compose-btn{
+
+        margin-inline-end: 2em;
+    }
     .folder-list {
         display: flex;
+        /* align-items: center; */
         justify-content: center;
         li {
+            margin-inline-end: 2em;
             height: 32px;
             display: flex;
             align-items: center;
@@ -39,14 +48,18 @@
         @apply bg-clrComposeBtn dark:bg-white
     }
     @media (min-width: 768px) {
+        display: block;
         width: 72px;
+        height: 100%;
         .compose-btn{
             margin: 8px 0 16px 8px;
         }
         .folder-list {
             display: flex;
             flex-direction: column;
+            /* align-items: center; */
             li {
+                margin-inline-end: 0;
                 /* justify-content: start; */
                 a {
                     margin-inline-start: 20px;

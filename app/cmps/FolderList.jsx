@@ -6,18 +6,29 @@ import { CiFileOn } from 'react-icons/ci'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { HiOutlineInbox } from 'react-icons/hi'
 
-export default function FolderList() {
+
+export default function FolderList({searchParams}) {
+  function getFolderPath(folder){
+    const composeParams = searchParams.get('compose') ? `&compose=${searchParams.get('compose')}` : ''
+    return `/mail/${folder}?txt=${searchParams.get('txt')}${composeParams}`
+  
+  }
+
+  function getLinkClass(folder){
+    return pathname === `/mail/${folder}`
+            ? 'bg-clrSidebarActive dark:bg-clrSidebarActiveDark'
+            : 'hover:bg-clrHover dark:hover:bg-clrHoverDark'
+            
+
+  }
+
   const pathname = usePathname()
   return (
     <ul className="folder-list">
       <li
      
       >
-        <Link className={
-          pathname === '/mail/inbox'
-            ? 'bg-clrSidebarActive'
-            : 'hover:bg-clrHover'
-        } href="/mail/inbox">
+        <Link className={getLinkClass('inbox')} href={getFolderPath('inbox')}>
           <HiOutlineInbox size={20} />
           <span className="txt-span">Inbox</span>
         </Link>
@@ -25,11 +36,7 @@ export default function FolderList() {
       <li
         
       >
-        <Link className={
-          pathname === '/mail/starred'
-            ? 'bg-clrSidebarActive'
-            : 'hover:bg-clrHover'
-        } href="/mail/starred">
+        <Link className={getLinkClass('starred')} href={getFolderPath('starred')}>
           <MdOutlineStar size={20} />
           <span className="txt-span">Starred</span>
         </Link>
@@ -37,11 +44,7 @@ export default function FolderList() {
       <li
         
       >
-        <Link className={
-          pathname === '/mail/sent'
-            ? 'bg-clrSidebarActive'
-            : 'hover:bg-clrHover'
-        } href="/mail/sent">
+        <Link className={getLinkClass('sent')} href={getFolderPath('sent')}>
           <RxPaperPlane size={20} />
           <span className="txt-span">Sent</span>
         </Link>
@@ -49,11 +52,7 @@ export default function FolderList() {
       <li
       
       >
-        <Link className={
-          pathname === '/mail/draft'
-            ? 'bg-clrSidebarActive'
-            : 'hover:bg-clrHover'
-        } href="/mail/draft">
+        <Link className={getLinkClass('sent')} href={getFolderPath('draft')}>
           <CiFileOn size={20} />
           <span className="txt-span">Draft</span>
         </Link>
@@ -61,11 +60,7 @@ export default function FolderList() {
       <li
       
       >
-        <Link className={
-          pathname === '/mail/trash'
-            ? 'bg-clrSidebarActive'
-            : 'hover:bg-clrHover'
-        } href="/mail/trash">
+        <Link className={getLinkClass('trash')} href={getFolderPath('trash')}>
           <FaRegTrashAlt size={20} />
           <span className="txt-span">Trash</span>
         </Link>

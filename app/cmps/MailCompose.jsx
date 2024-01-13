@@ -4,6 +4,7 @@ import { mailService } from '../services/mail.service'
 import { FiMinimize2, FiMaximize2 } from 'react-icons/fi'
 import { utilService } from '../services/util.service'
 import { MdMaximize, MdMinimize } from 'react-icons/md'
+import { useEffectUpdate } from '../customHooks/useEffectUpdate'
 
 export default function MailCompose({
   renderSearchParams,
@@ -20,17 +21,19 @@ export default function MailCompose({
   useEffect(() => {
     const mailId = searchParams.get('compose')
     if (mailId && mailId !== 'new') {
+      console.log('loading mail')
       loadMail(mailId)
     }
   }, [])
 
-  useEffect(() => {
+  useEffectUpdate(() => {
+    
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
       timeoutRef.current = null
     }
 
-    timeoutRef.current = setTimeout(() => onSaveDraft(mailToEdit), 5000)
+    timeoutRef.current = setTimeout(() => onSaveDraft(mailToEdit), 3000)
   }, [mailToEdit])
 
   async function loadMail(mailId) {
@@ -43,12 +46,18 @@ export default function MailCompose({
   }
 
   async function onSaveDraft(mail) {
+    console.log('saving mail')
     if (!mail.id) {
       const addedMail = await onAddMail(mail)
-      setMailToEdit(addedMail)
+      // setMailToEdit(addedMail)
+      setMailToEdit(prevMail => {
+
+        return {...prevMail, id:addedMail.id}})
+      
+      // searchParams.set('compose' ,addedMail.id)
       renderSearchParams(addedMail.id)
     } else {
-      onUpdateMail(mail)
+       onUpdateMail(mail)
     }
   }
 
@@ -57,8 +66,8 @@ export default function MailCompose({
     if (!utilService.validateMail(mailToEdit.to)) {
       return showErrorMsg('Invalid Email Address!')
     }
-    await onSaveDraft({ ...mailToEdit, isDraft: !mailToEdit.isDraft })
-    renderSearchParams('new')
+    await onSaveDraft({ ...mailToEdit, isDraft: 0 })
+    renderSearchParams('')
   }
 
   async function handleChange({ target: { value, name } }) {
@@ -82,19 +91,19 @@ export default function MailCompose({
     ? 'full-screen'
     : 'standard'
 
-  const { subject, body, to } = mailToEdit
+  const { subject = '', body = '', to = '' } = mailToEdit
   return (
-    <section className={`mail-compose ${viewClass}`}>
-      <header className="compose-header">
+    <section className={`mail-compose ${viewClass} bg-white dark:text-clrTxtPrimary`}>
+      <header className="compose-header bg-clrRead">
         <h4>{mailToEdit.subject || 'New Message'}</h4>
         <div className="icons-container">
           <span onClick={toggleIsMinimized}>
-            {isMinimized ? <FiMaximize2 /> : <MdMinimize />}
+            {isMinimized ? <FiMaximize2 size={16}/> : <MdMinimize size={16}/>}
           </span>
           <span onClick={toggleFullScreen}>
-            {isFullScreen ? <FiMinimize2 /> : <FiMaximize2 />}
+            {isFullScreen ? <FiMinimize2 size={16}/> : <FiMaximize2 size={16}/>}
           </span>
-          <span onClick={() => renderSearchParams('')}>x</span>
+          <span onClick={() => renderSearchParams('')}>X</span>
         </div>
       </header>
       <form className="compose-form">
@@ -123,7 +132,7 @@ export default function MailCompose({
         />
       </form>
       <div className="compose-controls">
-        <button>send</button>
+        <button onClick={onSendMail}>send</button>
         <span>trash</span>
       </div>
     </section>

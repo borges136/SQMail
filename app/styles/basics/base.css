@@ -12,11 +12,19 @@
 }
 
 body {
-    @apply bg-clrBgPrimary min-h-full m-0 text-base  md:text-sm
+    @apply bg-clrBgPrimary dark:bg-clrBgPrimaryDark text-clrTxtPrimary dark:text-white  min-h-full m-0 text-base  md:text-sm
 }
 
 /* tags */
-
+html.dark{
+    & .mail-preview:hover{
+        box-shadow: inset 1px 0 0 rgba(255,255,255,0.2),inset -1px 0 0 rgba(255,255,255,0.2),0 0 4px 0 rgba(95,99,104,.6),0 0 6px 2px rgba(95,99,104,.6);
+    }
+    & .expanded-mail .delete-forever{
+        color: rgba(255,255,255,.7);
+        /* color: '#ffffffb3'; */
+    }
+}
 
 img {
     @apply w-full

@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import MailPreview from './MailPreview'
 
 export default function MailList({
@@ -7,7 +8,7 @@ export default function MailList({
   onRemoveMail,
 }) {
   return (
-    <>
+    <Fragment>
       {mails.length ? (
         <ul className="mail-list">
           {mails.map((mail) => (
@@ -23,6 +24,6 @@ export default function MailList({
       ) : (
         <h1 className="no-mails-info">No mails here</h1>
       )}
-    </>
+    </Fragment>
   )
 }

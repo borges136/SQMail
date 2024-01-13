@@ -1,4 +1,5 @@
 .mail-list{
+    overflow-y: scroll;
 
 }
 .no-mails-info{

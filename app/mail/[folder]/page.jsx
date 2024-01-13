@@ -36,6 +36,13 @@ export default function MailIndex() {
   const [sidebarExpand, setSidebarExpand] = useState(true)
 
   useEffect(() => {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+      document.documentElement.classList.add('dark')
+    }
+    console.dir(document.documentElement.classList)
+  }, [])
+
+  useEffect(() => {
     renderSearchParams()
     loadMails()
   }, [filterBy, params.folder])
@@ -63,8 +70,6 @@ export default function MailIndex() {
   }
 
   function renderSearchParams(compose = searchParams.get('compose')) {
-    console.log('🚀 ~ renderSearchParams ~ compose:', compose)
-    console.log('🚀 ~ renderSearchParams ~ pathname:', pathname)
 
     const qsParams = new URLSearchParams()
     // const qsParams = new URLSearchParams(searchParams)
@@ -85,8 +90,8 @@ export default function MailIndex() {
         setMails((prevMails) =>
           prevMails.filter((m) => m.id !== updatedMail.id)
         )
-      } else if (params.folder === 'sent' && updatedMail.isDraft) {
-        setMails((prevMails) => [savedMail, ...prevMails])
+      } else if (params.folder === 'sent' && !updatedMail.isDraft && !mails.some(m => m.id === updatedMail.id)) {
+        setMails((prevMails) => [updatedMail, ...prevMails])
       } else {
         setMails((prevMails) =>
           prevMails.map((mail) =>
@@ -117,7 +122,7 @@ export default function MailIndex() {
     try {
       const savedMail = await mailService.save({ ...mail })
       if (
-        params.folder === 'sent' ||
+        (params.folder === 'sent' && !savedMail.isDraft) ||
         (params.folder === 'draft' && savedMail.isDraft)
       ) {
         setMails((prevMails) => [savedMail, ...prevMails])
@@ -144,6 +149,7 @@ export default function MailIndex() {
       <Sidebar
         folder={params.folder}
         sidebarExpand={sidebarExpand}
+        searchParams={searchParams}
         renderSearchParams={renderSearchParams}
       />
       <section className="mails-container">
