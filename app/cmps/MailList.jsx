@@ -6,6 +6,7 @@ export default function MailList({
   folder,
   onUpdateMail,
   onRemoveMail,
+  renderSearchParams
 }) {
   return (
     <Fragment>
@@ -18,6 +19,7 @@ export default function MailList({
               folder={folder}
               onUpdateMail={onUpdateMail}
               onRemoveMail={onRemoveMail}
+              renderSearchParams={renderSearchParams}
             />
           ))}
         </ul>

@@ -1,11 +1,13 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import logo from '@/public/logo.svg'
+
+import { AiOutlineSearch } from 'react-icons/ai'
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { MdDarkMode } from 'react-icons/md'
+
 import { utilService } from '@/app/services/util.service'
 import { useEffect, useRef, useState } from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { RxHamburgerMenu } from "react-icons/rx";
-import { MdDarkMode, MdLightMode } from 'react-icons/md'
-import logo from '@/public/logo.svg'
-import Image from 'next/image'
 
 export default function MainHeader({
   filterBy,
@@ -28,6 +30,7 @@ export default function MainHeader({
     const { name: field, value } = target
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
+
   return (
     <header className="main-header flex">
       <span
@@ -38,20 +41,11 @@ export default function MainHeader({
       >
         <RxHamburgerMenu size={24} />
       </span>
-      <div className="logo flex items-center">
-        {/* <img src="/my-logo.svg" alt="Logo" width={40} height={40} /> */}
-        <Image
-          src={logo}
-          // width={28}
-          // height={28}
-          // placeholder='blur'
-          // layout="responsive"
-          alt="Logo"
-        />
+      <Link href={'/'} className="logo flex items-center">
+        <Image src={logo} alt="Logo" />
         <span>SQmail</span>
-      </div>
+      </Link>
       <form className="header-search flex items-center rounded-3xl	bg-clrInput dark:bg-clrInputDark focus-within:bg-white">
-        {/* text-clrTxtTertiary dark:text-clrTxtTertiaryDark */}
         <label title="search" htmlFor="txt" className="p-3">
           <AiOutlineSearch size={22} />
         </label>

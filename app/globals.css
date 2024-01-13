@@ -2,14 +2,11 @@
 
 /* BASICS */
 @import url("styles/basics/base.css");
-@import url("styles/basics/helpers.css");
-@import url("styles/basics/layout.css");
-/* SETUP */
-@import url("styles/setup/typography.css");
-@import url("styles/setup/variables.css");
+
 /* PAGES */
 @import url("styles/pages/home.css");
 @import url("styles/pages/mail-index.css");
+
 /* CMPS */
 @import url("styles/cmps/loader.css");
 @import url("styles/cmps/main-header.css");
@@ -18,8 +15,7 @@
 @import url("styles/cmps/mail-preview.css");
 @import url("styles/cmps/mail-compose.css");
 @import url("styles/cmps/mult-bar.css");
-/* MQ */
-@import url("styles/basics/mq.css");
+@import url("styles/cmps/user-msg.css");
 
 /* Tailwind CSS directives */
 @tailwind base;
@@ -27,3 +23,17 @@
 @tailwind utilities;
 
 
+
+@layer base {
+    .clean-list {
+        @apply m-0 p-0 list-none
+    }
+
+    .flex-center{
+        @apply flex items-center justify-center   
+    }
+
+    .flex-between{
+        @apply flex items-center justify-between 
+    }
+}

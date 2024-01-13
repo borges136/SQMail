@@ -1,12 +1,11 @@
 const mysql = require('mysql2')
 
 const connection = mysql.createConnection({
-    host: 'viaduct.proxy.rlwy.net',
-    port: 22757,
-    user: 'root',
-    password: '44dEgf2FBd34H3af5HgDGFAfa-C1ah6e',
-    database: 'railway',
-    // insecureAuth: true
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
 })
 
 connection.connect(err => {
@@ -18,17 +17,9 @@ connection.connect(err => {
     console.log('connected to SQL server')
 })
 
-
 function runSQL(sqlCommand,values) {
     return new Promise((resolve, reject) => {
         connection.query(sqlCommand, values,(error, results) => {
-            // if (error) {
-            //     console.error('SQL query error:', error.message);
-            //     reject(error);
-            // } else {
-            //     console.log('SQL query results:', results);
-            //     resolve(results);
-            // }
             if (error) reject(error)
             else resolve(results)
         })

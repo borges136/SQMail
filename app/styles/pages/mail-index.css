@@ -1,14 +1,42 @@
-.mails-container{
-    border-radius: 1em;
-    background: #fff;
-    margin-inline-end: 1em;
-    margin-block-end: 1em;
-    /* padding-inline-start: 13px; */
+.mail-index-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr max-content;
+    grid-template-areas: 
+    "header"
+    "list"
+    "sidebar";
 
-    height: calc(100vh - 64px - 72px - 1em);
-    @media screen(md) {
-        
-        height: calc(100vh - 64px - 1em);
+    .sidebar{
+        grid-area: sidebar;
     }
-    @apply dark:bg-clrUnreadDark
+
+    .main-header{
+        grid-area: header;
+    }
+
+    .mails-container{
+        grid-area: list;
+        border-radius: 1em;
+        background: #fff;
+        margin-inline-end: 1em;
+        margin-block-end: 1em;
+        height: calc(100vh - 64px - 72px - 1em);
+
+        @media screen(md) {
+            height: calc(100vh - 64px - 1em);
+        }
+
+        @apply dark:bg-clrUnreadDark;
+    }
+
+    @media screen(md) {
+        grid-template-columns: max-content 1fr;
+        grid-template-rows: max-content 1fr;
+        grid-template-areas: 
+        "header header"
+        "sidebar list";
+    }
 }
+
+

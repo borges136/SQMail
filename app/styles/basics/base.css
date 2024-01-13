@@ -1,55 +1,32 @@
 /* general */
-*{
 
-}
-
-*{
-	@apply box-border
+* {
+    @apply box-border;
 }
 
 :root {
-	@apply text-clrTxtPrimary 
+    @apply text-clrTxtPrimary;
 }
 
 body {
-    @apply bg-clrBgPrimary dark:bg-clrBgPrimaryDark text-clrTxtPrimary dark:text-white  min-h-full m-0 text-base  md:text-sm
-}
-
-/* tags */
-html.dark{
-    & .mail-preview:hover{
-        box-shadow: inset 1px 0 0 rgba(255,255,255,0.2),inset -1px 0 0 rgba(255,255,255,0.2),0 0 4px 0 rgba(95,99,104,.6),0 0 6px 2px rgba(95,99,104,.6);
-    }
-    & .expanded-mail .delete-forever{
-        color: rgba(255,255,255,.7);
-        /* color: '#ffffffb3'; */
-    }
+    @apply bg-clrBgPrimary dark:bg-clrBgPrimaryDark text-clrTxtPrimary dark:text-white  min-h-full m-0 text-base  md:text-sm;
 }
 
 img {
-    @apply w-full
-   
+    @apply w-full;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    /* font-weight: 400;
-    margin: 0 0 0.8em;
-    line-height: 1.4; */
-}
-
-h2 {
-    /* font-size: 2.1428571em; */
-}
-
-a {
-    /* color: var(--clrPrimary-1); */
-}
-
-a:hover {
-    /* text-decoration: none; */
+/* dark mode */
+html.dark {
+    & .mail-preview:hover {
+        box-shadow:
+            inset 1px 0 0 rgba(255, 255, 255, 0.2),
+            inset -1px 0 0 rgba(255, 255, 255, 0.2),
+            0 0 4px 0 rgba(95, 99, 104, 0.6),
+            0 0 6px 2px rgba(95, 99, 104, 0.6);
+    }
+    & .expanded-mail .delete-forever {
+        color: rgba(255, 255, 255, 0.7);
+        /* color: '#ffffffb3'; */
+    }
 }

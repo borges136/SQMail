@@ -1,64 +1,73 @@
 .mail-compose {
     display: grid;
     grid-template-rows: 40px 1fr 60px;
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    bottom: 0;
-    right: 0;
-    /* border-radius: 2em; */
-    /* border-radius: 8px 8px 0 0; */
+    @apply absolute h-screen w-screen bottom-0 right-0;
     
     .compose-header {
         & h4{
             color: #041e49;
         }
-        padding-inline-start: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
+        @apply flex-between ps-4;
+
         .icons-container {
-            display: flex;
-            align-items: center;
-            margin-inline-end: 12px;
+            @apply me-3 flex items-center;
+
             & span {
-                margin-inline-start: 4px;
+                @apply cursor-pointer ms-1;
             }
         }
     }
-    .compose-controls {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-inline-start: 16px;
-       
+
+    .compose-form input{
+        box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+        &:focus-within{
+            outline: none
+        }
     }
+
+    .compose-controls {
+        @apply flex-between px-4;
+
+        & button {
+            background-color: #0b57d0;
+            height: 36px;
+            box-shadow: 0 1px 2px 0 rgba(26,115,232,0.451),0 1px 3px 1px rgba(26,115,232,0.302);
+            @apply flex-center font-medium rounded-3xl px-6;
+
+            &:hover{
+                background-color: #1b61d1;
+            }
+        }
+    }
+
     .compose-form {
         padding-inline-start: 16px;
         display: grid;
         grid-template-rows: 40px 40px 1fr;
     }
+
     @media screen(md) {
         box-shadow:
             0px 8px 10px 1px rgba(0, 0, 0, 0.14),
             0px 3px 14px 2px rgba(0, 0, 0, 0.12),
             0px 5px 5px -3px rgba(0, 0, 0, 0.2);
-        border-radius: .5rem .5rem 0 0;
         width: 451px;
         right: 61px;
+
         &.minimized {
             height: 40px;
-            /* grid-template-rows: 40px; */
             .compose-controls,
             .compose-form {
-                display: none;
+                @apply hidden;
             }
         }
+
         &.standard {
             height: 467px;
         }
+
         &.full-screen {
-            /* position: fixed; */
             height: 94vh;
             width: 67vw;
             bottom: 50%;

@@ -1,13 +1,17 @@
 .main-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
     height: 64px;
     padding: 0.5em;
+    @apply w-full flex items-center;
+    
+    .logo{
+        @apply text-2xl ms-2;
+    }
+
     .expand-hamburger {
         width: 48px;
         height: 48px;
     }
+
     .dark-btn {
         position: absolute;
         right: 2em;
@@ -15,14 +19,9 @@
 }
 
 .header-search {
-    position: absolute;
     left: 256px;
     height: 48px;
-    min-width: 324px;
+    min-width: 3px;
     width: 40%;
-    font-size: 1rem;
-    /* border-radius: 1.5em; */
-    /* & .logo{
-        height: 40px;
-    } */
+    @apply text-base absolute;
 }

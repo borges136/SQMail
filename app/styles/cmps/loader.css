@@ -4,6 +4,7 @@
 	display: block;
 	margin: 20px auto;
 	position: relative;
+	top: 25%;
 	border-radius: 4px;
 	color: #000;
 	background: currentColor;
