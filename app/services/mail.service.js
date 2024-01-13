@@ -6,14 +6,14 @@ export const mailService = {
 	remove,
 	save,
 	getEmptyMail,
-	getLoggedUser,
+	getLoggedinUser,
 	getFilterFromParams,
 	toggleSelectedRead,
 	getUnreadCount,
 	toggleSelectedArchive,
 }
 
-const loggedInUser = {
+const loggedinUser = {
 	email: 'dore.zahavy@sqmail.com',
   fullName: 'Dore Babaji',
 }
@@ -97,6 +97,6 @@ function getFilterFromParams(searchParams) {
 	return filterBy
 }
 
-function getLoggedUser() {
-	return loggedInUser
+function getLoggedinUser() {
+	return loggedinUser
 }

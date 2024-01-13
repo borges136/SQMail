@@ -65,9 +65,7 @@ export default function MailIndex() {
   }
 
   async function onUpdateMail(mail) {
-    console.log("🚀 ~ onUpdateMail ~ mail:", mail)
     try {
-      
       const updatedMail = await mailService.save(mail)
       if (
         (params.folder === 'draft' && !updatedMail.isDraft) ||
