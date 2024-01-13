@@ -12,5 +12,5 @@ export function useEffectUpdate(callBack, dependencies) {
         }
 
         return callBack()
-    }, dependencies)
+    }, [...dependencies])
 }

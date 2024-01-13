@@ -40,7 +40,7 @@ export default function Home() {
         </div>
        
         <div>
-          <h1>Email that's secure, private, and puts you in control.</h1>
+          <h1>Email that&apos;s secure, private, and puts you in control.</h1>
           <h2>Get more done faster</h2>
           <h4>Write emails and messages faster to spend more time doing what you love.</h4>
         </div>
