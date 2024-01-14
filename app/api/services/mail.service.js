@@ -50,7 +50,8 @@ async function query(criteria = {}) {
                  mail.from_user LIKE ? OR
                  mail.to_user LIKE ? OR
                  mail.body LIKE ?)
-                 ${filterClause}`
+                 ${filterClause}
+                 ORDER BY sent_at DESC`
 
   return DBService.runSQL(query, values)
 }

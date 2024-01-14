@@ -13,12 +13,15 @@ export const GET = async (req) => {
   const mails = await mailService.query(criteria)
   return NextResponse.json(mails)
 }
+
 export const POST = async (req) => {
   let { subject, body, sentAt, from, to, isRead, isStarred, isTrash, isDraft } =
     await req.json()
 
   from = mailService.getLoggedinUser().email
   sentAt = utilService.getCurrDate()
+
+  // sentAt = utilService.getRandomDateWithinMonths(3) // for generating demo data
 
   const values = [
     subject,
