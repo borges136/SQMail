@@ -11,19 +11,20 @@ export const GET = async (req, { params }) => {
 
 export const PUT = async (req) => {
   let {
-    subject ,
-    body ,
+    subject,
+    body,
     sentAt,
-    from ,
-    to ,
-    isRead ,
-    isStarred ,
-    isTrash ,
-    isDraft ,
+    from,
+    to,
+    isRead,
+    isStarred,
+    isTrash,
+    isDraft,
     id,
   } = await req.json()
 
-  if (isDraft) sentAt = utilService.getCurrDate()
+  sentAt = isDraft ? utilService.getCurrDate() : utilService.formatDate(sentAt)
+  
   const values = [
     subject,
     body,
