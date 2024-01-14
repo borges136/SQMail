@@ -15,10 +15,10 @@ async function query(criteria = {}) {
 
   switch (folder) {
     case 'inbox':
-      filterClause = `AND is_draft = 0 AND is_trash = 0 AND to_user = '${loggedInUser.email}'`
+      filterClause = `AND is_draft = 0 AND is_trash = 0 AND to_user = '${loggedinUser.email}'`
       break
     case 'sent':
-      filterClause = `AND is_draft = 0 AND is_trash = 0 AND from_user = '${loggedInUser.email}'`
+      filterClause = `AND is_draft = 0 AND is_trash = 0 AND from_user = '${loggedinUser.email}'`
       break
     case 'trash':
       filterClause = 'AND is_trash = 1'
