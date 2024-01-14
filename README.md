@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SQmail
+<p style="margin-block-end: 3em;">A seamless and efficient email management experience.<br/>Check it out <a href="sqmail.vercel.app">right here</a></p>
+<div>
+  
+![sqmail poster](public/poster1.png)
+</div>
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
+* **Next.js 14 and Folder Routing:** Leverages Next.js 14 for efficient folder-based routing.
+* **MySQL and SQL Commands:** Uses MySQL and SQL commands for smart CRUD operations, including sorting and filtering.
+* **CSS Nesting and Tailwind:** Implements CSS nesting combined with tailwind directives for clean and concise styling.
+* **Search Params and Dynamic Routes:** Employs dynamic routes and search params for better navigatation through the application's state.
+* **Responsive Layout:** Adapts to various devices for a consistent user experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key features
+* **Automatic Draft Saving:** Saves drafts automatically to prevent data loss.
+* **Folder Organization:** Efficiently organizes emails into folders.
+* **Email Composition:** Seamlessly compose and send emails.
+* **Debounced Text Search:** Enhances performance with an efficient debounced text search.
+* **Flexible Sidebar:** Provides a user-friendly and adaptable sidebar for navigation.
+* **Smart Rendering on Mail Update:** Introduces smart rendering for real-time updates based on folder changes.
+* **Dark Mode:** Offers a Dark Mode option for diverse user preferences.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Connect
+**email:** dorezahavy@gmail.com  <br/>
+<a href="https://linkedin.com/in/dore-zahavy" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="dore-zahavy" height="30" width="40" /></a>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
